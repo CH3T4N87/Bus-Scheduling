@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bus</title>
+</head>
+<body>
+    <h4>Add Bus</h4>
+    <form action="/addBus" method="post">
+        <label for="destination">Choose Destination</label>
+        <select name="destination" id="destination">
+            <option value="Thalner">Thalner</option>
+            <option value="Manjrod">Manjrod</option>
+            <option value="Japora">Japora</option>
+            <option value="Holnanthe">Holnanthe</option>
+        </select><br><br>
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time" placeholder="e.g 6.15pm"><br><br>
+        <label for="bnumber">Bus Number</label>
+        <input type="number" name="bnumber" id="bnumber" placeholder="e.g 0920"><br><br>
+        <label for="status">Status: </label><br>
+        <label>
+            <input type="radio" name="status" value="Waiting">Waiting
+        </label>
+        <label>
+            <input type="radio" name="status" value="Departed">Departed
+        </label>
+        <br><br>
+        <button>Add</button>
+    </form>
+</body>
+</html>

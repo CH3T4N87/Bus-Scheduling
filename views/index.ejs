@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Schedule</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      width: 100%;
+      height: 100vh;
+      /* padding-top: 1rem;
+            padding-left: 1rem;    */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: url("https://wallpapercave.com/wp/0r3WQQ1.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .busCard {
+      margin-top: 2rem;
+      margin-left: 1rem;
+      width: 60% !important;
+      /* background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px); */
+      /* box-shadow: 10px 10px 20px rgba(255, 255, 255); */
+      background: hsla(238, 100%, 71%, 1);
+
+background: linear-gradient(315deg, hsla(238, 100%, 71%, 1) 0%, hsla(295, 100%, 84%, 1) 100%);
+
+background: -moz-linear-gradient(315deg, hsla(238, 100%, 71%, 1) 0%, hsla(295, 100%, 84%, 1) 100%);
+
+background: -webkit-linear-gradient(315deg, hsla(238, 100%, 71%, 1) 0%, hsla(295, 100%, 84%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#696EFF", endColorstr="#F8ACFF", GradientType=1 );
+    }
+
+    .waiting {
+      /* background-color: rgb(113, 227, 113); */
+      background: hsla(95, 100%, 50%, 1);
+
+background: linear-gradient(315deg, hsla(95, 100%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+background: -moz-linear-gradient(315deg, hsla(95, 100%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+background: -webkit-linear-gradient(315deg, hsla(95, 100%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6AFF00", endColorstr="#FFFFFF", GradientType=1 );
+    }
+
+    .departed {
+      /* background-color: rgb(255, 118, 118); */
+      background: hsla(0, 82%, 59%, 1);
+
+background: linear-gradient(315deg, hsla(0, 82%, 59%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+background: -moz-linear-gradient(315deg, hsla(0, 82%, 59%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+background: -webkit-linear-gradient(315deg, hsla(0, 82%, 59%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EC4343", endColorstr="#FFFFFF", GradientType=1 );
+    }
+
+    .card-body {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .card-title {
+      width: 100%;
+      text-align: center;
+    }
+    .addBtn{
+      font-weight: bold;
+      width: 15rem;
+      background: hsla(205, 34%, 40%, 1);
+
+background: linear-gradient(315deg, hsla(205, 34%, 40%, 1) 0%, hsla(347, 52%, 36%, 1) 100%);
+
+background: -moz-linear-gradient(315deg, hsla(205, 34%, 40%, 1) 0%, hsla(347, 52%, 36%, 1) 100%);
+
+background: -webkit-linear-gradient(315deg, hsla(205, 34%, 40%, 1) 0%, hsla(347, 52%, 36%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#436C89", endColorstr="#8B2C40", GradientType=1 );
+    }
+    .mdBtn{
+      color: white;
+      font-weight: bold;
+      background: hsla(205, 34%, 40%, 1);
+
+background: linear-gradient(315deg, hsla(205, 34%, 40%, 1) 0%, hsla(347, 52%, 36%, 1) 100%);
+
+background: -moz-linear-gradient(315deg, hsla(205, 34%, 40%, 1) 0%, hsla(347, 52%, 36%, 1) 100%);
+
+background: -webkit-linear-gradient(315deg, hsla(205, 34%, 40%, 1) 0%, hsla(347, 52%, 36%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#436C89", endColorstr="#8B2C40", GradientType=1 );
+    }
+  </style>
+</head>
+
+<body>
+  <h4 style="margin-top: 1rem;" class="text-white">Made with ❤️ by [...]</h4>
+  <p class="text-white">Site is under maintenance !!</p>
+  <!-- <img src="/bus.jpeg" style="height: 100px;"> -->
+
+  <% schedules.forEach(schedule=> { %>
+
+    <div class="busCard card " style="width: 18rem;">
+      <!-- <img src="/bus.jpg" class="card-img-top" alt="hi"> -->
+      <div class="card-body">
+        <h5 class="card-title fs-2 text-white"><b>Shirpur to <%= schedule.destination %></b></h5>
+        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item fs-4">Departure Time: <%= schedule.time %>
+        </li>
+        <li class="list-group-item fs-4">Bus Number: <%= schedule.bnumber %>
+        </li>
+        <li class="list-group-item fs-4 <%= schedule.status === 'Waiting' ? 'waiting' : 'departed' %>">Status: <%=
+            schedule.status %>
+        </li>
+      </ul>
+      <div class="card-body">
+        <form action="/update/<%=schedule._id%>" method="get">
+          <button class="mdBtn btn ">Update</button>
+        </form>
+        <form action="/delete/<%=schedule._id%>?_method=DELETE" method="post">
+          <button class=" mdBtn btn ">Delete</button>
+        </form>
+      </div>
+    </div>
+    <%})%>
+
+      <br><br>
+      <div><a href="/addBus"><button class=" addBtn btn btn-success fs-3 ">List</button></a></div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

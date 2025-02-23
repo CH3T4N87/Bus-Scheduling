@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Bus</title>
+</head>
+<body>
+    <h4>Update Shirpur to <%= bus[0].destination %></h4>
+    <form action="/update/<%=bus[0]._id%>?_method=PUT" method="post">
+        <label for="destination">Update Destination</label>
+        <select name="destination" id="destination">
+            <option  value="Thalner" <%= bus[0].destination === "Thalner" ? "selected" : "" %>>Thalner</option>
+            <option value="Manjrod" <%= bus[0].destination === "Manjrod" ? "selected" : "" %>>Manjrod</option>
+            <option value="Japora" <%= bus[0].destination === "Japora" ? "selected" : "" %> >Japora</option>
+            <option value="Holnanthe" <%= bus[0].destination === "Holnanthe" ? "selected" : "" %>>Holnanthe</option>
+        </select><br><br>
+        <label for="time">Update Time</label>
+        <input type="time" id="time" name="time"  placeholder="e.g 6.15pm" value="<%=bus[0].time%>"><br><br>
+        <label for="bnumber">Update Bus Number</label>
+        <input type="number" name="bnumber" id="bnumber" placeholder="e.g 0920" value="<%=bus[0].bnumber%>"><br><br>
+        <label for="status">Update Status: </label><br><br>
+        <label>
+            <input type="radio" name="status"  value="Waiting" <%= bus[0].status === "Waiting"? "checked":""%>>Waiting
+        </label>
+        <label>
+            <input type="radio" name="status" value="Departed" <%= bus[0].status === "Departed"? "checked":""%>>Departed
+        </label>
+        <br><br>
+        <button>Update</button>
+    </form>
+</body>
+</html>
